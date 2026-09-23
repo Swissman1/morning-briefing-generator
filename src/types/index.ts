@@ -19,7 +19,7 @@ export interface WeatherData {
   };
 }
 export interface NWSWeatherInfo{
-  message: string;
+  discussionMessage: string;
 }
 
 export interface BitcoinData {
@@ -27,20 +27,6 @@ export interface BitcoinData {
     usd: number;
     usd_24h_change: number;
   };
-}
-
-export interface NewsItem {
-  title: string;
-  link: string;
-  pubDate: string;
-  category?: string;
-}
-
-export interface VideoItem {
-  channel: string;
-  title: string;
-  published: string;
-  link: string;
 }
 
 export interface TideData {
@@ -59,11 +45,6 @@ export interface BriefingData {
     sunset: string;
   };
   tides: TideData[];
-  bitcoin?: {
-    price: number;
-    change: number;
-  };
-  news: NewsItem[];
-  videos: VideoItem[];
+  nwsDissusion: NWSWeatherInfo;
   articles: NewsItem[];
 }
