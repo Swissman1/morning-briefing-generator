@@ -18,6 +18,9 @@ export interface WeatherData {
     sunset: string[];
   };
 }
+export interface NWSWeatherInfo{
+  message: string;
+}
 
 export interface BitcoinData {
   bitcoin: {
