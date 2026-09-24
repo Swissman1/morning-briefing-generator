@@ -22,13 +22,6 @@ export interface NWSWeatherInfo{
   discussionMessage: string;
 }
 
-export interface BitcoinData {
-  bitcoin: {
-    usd: number;
-    usd_24h_change: number;
-  };
-}
-
 export interface TideData {
   time: string;
   type: 'High' | 'Low';
@@ -46,5 +39,4 @@ export interface BriefingData {
   };
   tides: TideData[];
   nwsDissusion: NWSWeatherInfo;
-  articles: NewsItem[];
 }
