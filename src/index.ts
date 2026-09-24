@@ -26,10 +26,7 @@ async function generateBriefing(): Promise<void> {
     articlesData
   ] = await Promise.allSettled([
     fetchWeather(),
-    fetchBitcoin(),
     fetchTides(),
-    fetchYouTubeVideos(),
-    fetchNews(),
     fetchRSSFeeds()
   ]);
 
@@ -51,20 +48,14 @@ async function generateBriefing(): Promise<void> {
   };
 
   // Extract successful results, defaulting to empty arrays for failures
-  const bitcoin = bitcoinData.status === 'fulfilled' ? bitcoinData.value : undefined;
   const tides = tidesData.status === 'fulfilled' ? tidesData.value : [];
   const videos = videosData.status === 'fulfilled' ? videosData.value : [];
-  const news = newsData.status === 'fulfilled' ? newsData.value : [];
-  const articles = articlesData.status === 'fulfilled' ? articlesData.value : [];
 
   // Build briefing data
   const briefing: BriefingData = {
     weather,
     tides,
-    bitcoin,
-    news,
-    videos,
-    articles
+    nwsInfo,
   };
 
   // Generate the briefing
@@ -101,11 +92,7 @@ async function generateBriefing(): Promise<void> {
   // Log summary statistics
   console.log('\n📊 Summary:');
   console.log(`- Weather: ${weather.current > 0 ? '✅' : '❌'} Available`);
-  console.log(`- Bitcoin: ${bitcoin ? '✅' : '❌'} ${bitcoin ? 'Significant change' : 'No significant change'}`);
   console.log(`- Tides: ${tides.length} entries`);
-  console.log(`- News: ${news.length} articles`);
-  console.log(`- Videos: ${videos.length} new videos`);
-  console.log(`- Articles: ${articles.length} new articles`);
   
   // Exit successfully
   process.exit(0);
